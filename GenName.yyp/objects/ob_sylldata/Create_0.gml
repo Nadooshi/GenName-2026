@@ -19,17 +19,13 @@ globalvar range_common
 globalvar range_reverse
 globalvar range_triple
 globalvar range_triprev
-globalvar range_lexicon
 
 var;
 randomize()
 generation_mode = 0
 sylldata_path = ""
 lexicon_path = ""
-lexicon = noone
-
-for (var i = 0; i < 4; i++)
-	range_lexicon[i] = 0
+lexicon = {}
 
 
 

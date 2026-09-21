@@ -28,12 +28,14 @@
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"conson.txt","CopyToMask":-1,"filePath":"datafiles","name":"conson.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"lexicon.txt","CopyToMask":-1,"filePath":"datafiles","name":"lexicon.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"syll.txt","CopyToMask":-1,"filePath":"datafiles","name":"syll.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"vowel.txt","CopyToMask":-1,"filePath":"datafiles","name":"vowel.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2023.11.1.129",
+    "IDEVersion":"2024.14.4.222",
   },
   "name":"GenName",
   "resources":[

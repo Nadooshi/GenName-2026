@@ -1,58 +1,43 @@
-/// @decr load word set
+/// @desc Load a lexicon (.txt) file into the `lexicon` struct
 function sc_load_lexicon() {
-	lexicon_path = get_open_filename("*.lxcn","lexicon.lxcn")
+	var _path = get_open_filename("*.txt", "lexicon.txt")
 
-	if not file_exists(lexicon_path) exit
-	generation_mode = 1
-	var file = file_text_open_read(lexicon_path)
-
-	var str, n
-	var arrIn
-
-	enum arr_ind {
-		wrd_grade,
-		wrd_thing,
-		wrd_decor,
-		wrd_attach
+	// dialog cancelled or file not readable
+	if (_path == "") exit
+	if not file_exists(_path) {
+		show_message("Не удалось открыть лексикон:" + chr(13) + _path)
+		exit
 	}
 
-	while not file_text_eof(file){
-		str = file_text_readln(file)
-		if string_pos("------", str) > 0 {
-			str = file_text_readln(file)
-			if string_pos("grade",str) > 0
-				arrIn = arr_ind.wrd_grade
-			else
-			if string_pos("thing",str) > 0
-				arrIn = arr_ind.wrd_thing
-			else
-			if string_pos("decoration",str) > 0
-				arrIn = arr_ind.wrd_decor
-			else
-			if string_pos("attachment",str) > 0
-				arrIn = arr_ind.wrd_attach
-			n = 0
+	// fresh struct: section name -> array of words
+	lexicon = {}
+	var _section = ""
+	var _line
+
+	var _file = file_text_open_read(_path)
+
+	while not file_text_eof(_file) {
+		_line = file_text_readln(_file)
+		_line = string_replace_all(_line, "\r", "")
+
+		// a "------" line is followed by the name of the section
+		if (string_pos("------", _line) > 0) {
+			_line = file_text_readln(_file)
+			_section = string_replace_all(_line, "\r", "")
+			if (_section != "") and not variable_struct_exists(lexicon, _section)
+				lexicon[$ _section] = []
 			continue
 		}
-		//str = file_text_readln(file)
-		switch str {
-			case "\r":
-			case "------":
-			case "grade":
-			case "thing":
-			case "decoration":
-			case "attachment":
-				continue;
-			default:
-				lexicon[arrIn , n] = string_copy(str,1,(string_pos("\r", str)-1))
-				n++
-		}
+
+		// skip blank lines and anything before the first section header
+		if (_line == "") continue
+		if (_section == "") continue
+
+		array_push(lexicon[$ _section], _line)
 	}
-	file_text_close(file)
 
-	for (var i=0; i < 4; i++)
-		range_lexicon[i] = array_length_2d(lexicon, i)-1
+	file_text_close(_file)
 
-
-
+	generation_mode = 1
+	show_debug_message("lexicon loaded: " + _path)
 }
