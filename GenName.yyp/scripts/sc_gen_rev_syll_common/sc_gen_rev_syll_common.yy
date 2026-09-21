@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sc_gen_rev_syll_common",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sc_gen_rev_syll_common",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
