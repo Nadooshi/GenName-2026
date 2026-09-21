@@ -37,8 +37,8 @@ to `GenName.yyp/` unless noted.
   set both properties; do not hardcode behavior in the object.
 - `ob_button_generate` (child of `ob_button_open`) overrides `Mouse_4`, calls
   `event_inherited()` first, and when `script` is `noone` shows `sc_generate_all`
-  (word + serial + lexicon phrase, joined by `#` = GameMaker newline). It asks
-  for `sc_load_database` when neither `syll_ready` nor `lex_ready`.
+  (word + serial + lexicon phrase + character name, joined by `\n`). It asks for
+  `sc_load_database` when neither `syll_ready` nor `lex_ready`.
 
 ## Generation pipeline (scripts/)
 1. `sc_sylldata_init` loads `datafiles/vowel.txt` + `conson.txt` via `sc_load_syll`
@@ -49,15 +49,16 @@ to `GenName.yyp/` unless noted.
    exponentially-weighted cumulative `range_*` arrays.
 4. `sc_generate_syll_*` / `sc_gen_rev_syll_*` pick a weighted index; `sc_generate`
    concatenates 1-4 syllables. `sc_generate_serial` appends `-<1..999>`.
-5. `sc_generate_all` calls `sc_generate`, `sc_generate_serial` and
-   `sc_lexicon_use`, skips empty results and joins with `#`.
+5. `sc_generate_all` calls `sc_generate`, `sc_generate_serial`, `sc_lexicon_use`
+   and `sc_generate_name`, skips empty results and joins with `\n`.
 
 ## Persistence / file formats
 - `datafiles/database.txt` is the combined file. Syllable sections
   (`common`, `reverse`, `triple`, `triprev`) use `syllable | rating` lines;
   lexicon sections (`grade_m/_f/_n`, `thing_m/_f/_n`, `decoration_m/_f/_n`,
   `attachment`) hold one word per line. Adjectives precede and agree in gender
-  with the noun.
+  with the noun. Character-name sections are `name_m/_f`, `patronymic_m/_f`
+  and `surname_m/_f` (gender-matched, combined by `sc_generate_name`).
 - `sc_sylldata_save` still writes only the syllable sections (default
   `syll.txt`); it does not include the lexicon. Keep its output in sync with the
   loader if you change the format.

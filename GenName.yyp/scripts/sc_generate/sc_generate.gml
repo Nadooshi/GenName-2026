@@ -39,7 +39,7 @@ function sc_generate() {
 
 }
 
-/// @desc Return every generator result joined by "#" (one line each when drawn)
+/// @desc Return every generator result joined by "\n" (one line each when drawn)
 function sc_generate_all() {
 	var _lines = []
 
@@ -51,6 +51,9 @@ function sc_generate_all() {
 
 	var _phrase = sc_lexicon_use()
 	if (_phrase != "") array_push(_lines, _phrase)
+
+	var _name = sc_generate_name()
+	if (_name != "") array_push(_lines, _name)
 
 	var _text = ""
 	for (var i = 0; i < array_length_1d(_lines); i++) {

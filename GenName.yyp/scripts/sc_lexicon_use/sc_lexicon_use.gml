@@ -53,3 +53,28 @@ function sc_lexicon_use() {
 
 	return _phrase
 }
+
+/// @desc Generate a full character name (first + patronymic + surname), gender-matched
+function sc_generate_name() {
+	// pick a gender that has all three parts
+	var _genders = []
+	if (sc_lexicon_has("name_m") and sc_lexicon_has("patronymic_m") and sc_lexicon_has("surname_m")) array_push(_genders, "m")
+	if (sc_lexicon_has("name_f") and sc_lexicon_has("patronymic_f") and sc_lexicon_has("surname_f")) array_push(_genders, "f")
+	if (array_length_1d(_genders) == 0) return ""
+
+	var _sfx = "_" + _genders[irandom_range(0, array_length_1d(_genders) - 1)]
+
+	var _first   = sc_lexicon_pick("name" + _sfx)
+	var _patro   = sc_lexicon_pick("patronymic" + _sfx)
+	var _surname = sc_lexicon_pick("surname" + _sfx)
+	var _parts   = [_first, _patro, _surname]
+
+	// join the chosen words, skipping any empty section
+	var _name = ""
+	for (var i = 0; i < array_length_1d(_parts); i++) {
+		if (_parts[i] == "") continue
+		_name += (_name == "") ? _parts[i] : " " + _parts[i]
+	}
+
+	return _name
+}
