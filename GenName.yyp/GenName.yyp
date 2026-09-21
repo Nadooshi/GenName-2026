@@ -28,6 +28,7 @@
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"conson.txt","CopyToMask":-1,"filePath":"datafiles","name":"conson.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"database.txt","CopyToMask":-1,"filePath":"datafiles","name":"database.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"lexicon.txt","CopyToMask":-1,"filePath":"datafiles","name":"lexicon.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"syll.txt","CopyToMask":-1,"filePath":"datafiles","name":"syll.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"vowel.txt","CopyToMask":-1,"filePath":"datafiles","name":"vowel.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -41,7 +42,6 @@
   "resources":[
     {"id":{"name":"font0","path":"fonts/font0/font0.yy",},},
     {"id":{"name":"ob_butt","path":"objects/ob_butt/ob_butt.yy",},},
-    {"id":{"name":"ob_button_gen_serialNumber","path":"objects/ob_button_gen_serialNumber/ob_button_gen_serialNumber.yy",},},
     {"id":{"name":"ob_button_generate","path":"objects/ob_button_generate/ob_button_generate.yy",},},
     {"id":{"name":"ob_button_open","path":"objects/ob_button_open/ob_button_open.yy",},},
     {"id":{"name":"ob_sylldata","path":"objects/ob_sylldata/ob_sylldata.yy",},},

@@ -15,7 +15,6 @@
     {"name":"Timelines","order":11,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[
-    {"name":"ob_button_gen_serialNumber","order":3,"path":"objects/ob_button_gen_serialNumber/ob_button_gen_serialNumber.yy",},
     {"name":"ob_button_generate","order":2,"path":"objects/ob_button_generate/ob_button_generate.yy",},
     {"name":"ob_button_open","order":1,"path":"objects/ob_button_open/ob_button_open.yy",},
     {"name":"ob_sylldata","order":4,"path":"objects/ob_sylldata/ob_sylldata.yy",},

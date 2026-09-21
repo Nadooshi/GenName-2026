@@ -1,5 +1,7 @@
 /// @desc Return a new word
 function sc_generate() {
+	// no syllable data loaded yet
+	if not syll_ready return ""
 
 	var syll_arr
 	var cap_word = ""
@@ -37,14 +39,23 @@ function sc_generate() {
 
 }
 
-/// @desc Generate a word/phrase and show it in the caption of the calling instance
-function sc_generate_button() {
-	switch generation_mode {
-		case 0:
-			caption = sc_generate()
-			break;
-		case 1:
-			caption = sc_lexicon_use()
-			break;
+/// @desc Return every generator result joined by "#" (one line each when drawn)
+function sc_generate_all() {
+	var _lines = []
+
+	var _word = sc_generate()
+	if (_word != "") array_push(_lines, _word)
+
+	var _serial = sc_generate_serial()
+	if (_serial != "") array_push(_lines, _serial)
+
+	var _phrase = sc_lexicon_use()
+	if (_phrase != "") array_push(_lines, _phrase)
+
+	var _text = ""
+	for (var i = 0; i < array_length_1d(_lines); i++) {
+		if (_text != "") _text += "\n"
+		_text += _lines[i]
 	}
+	return _text
 }

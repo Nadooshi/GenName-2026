@@ -13,6 +13,9 @@ function sc_lexicon_pick(_section) {
 
 /// @desc Build a phrase from the loaded lexicon, matching adjective gender to the noun
 function sc_lexicon_use() {
+	// no lexicon data loaded yet
+	if not lex_ready return ""
+
 	// pick a grammatical gender that actually has nouns
 	var _genders = []
 	if (sc_lexicon_has("thing_m")) array_push(_genders, "m")

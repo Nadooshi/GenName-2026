@@ -1,13 +1,10 @@
-/// @desc Run the assigned script, otherwise generate and show the result
+/// @desc Run the assigned script, otherwise show all generators (one per line)
 event_inherited()
 
 if (script == noone) {
-	switch generation_mode {
-		case 0:
-			caption = sc_generate()
-			break;
-		case 1:
-			caption = sc_lexicon_use()
-			break;
-	}
+	// nothing loaded yet: ask the user to pick the database file
+	if not (syll_ready or lex_ready) sc_load_database()
+
+	var _text = sc_generate_all()
+	if (_text != "") caption = _text
 }

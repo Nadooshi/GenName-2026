@@ -19,6 +19,8 @@ function sc_sylldata_init() {
 	
 	sc_prepare_ranges()
 
+	syll_ready = true
+
 
 
 }

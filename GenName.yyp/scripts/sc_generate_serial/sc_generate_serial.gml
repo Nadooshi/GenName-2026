@@ -1,5 +1,8 @@
 /// @desc generate serial number
 function sc_generate_serial() {
+	// no syllable data loaded yet
+	if not syll_ready return ""
+
 	var syll_arr
 	var cap_word
 	var syll_type = irandom_range(0,3)
