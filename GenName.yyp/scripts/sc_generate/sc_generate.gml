@@ -36,3 +36,15 @@ function sc_generate() {
 
 
 }
+
+/// @desc Generate a word/phrase and show it in the caption of the calling instance
+function sc_generate_button() {
+	switch generation_mode {
+		case 0:
+			caption = sc_generate()
+			break;
+		case 1:
+			caption = sc_lexicon_use()
+			break;
+	}
+}

@@ -18,12 +18,15 @@ function sc_load_lexicon() {
 
 	while not file_text_eof(_file) {
 		_line = file_text_readln(_file)
+		// strip the line ending (CR, LF or CRLF, whichever the file uses)
 		_line = string_replace_all(_line, "\r", "")
+		_line = string_replace_all(_line, "\n", "")
 
 		// a "------" line is followed by the name of the section
 		if (string_pos("------", _line) > 0) {
 			_line = file_text_readln(_file)
 			_section = string_replace_all(_line, "\r", "")
+			_section = string_replace_all(_section, "\n", "")
 			if (_section != "") and not variable_struct_exists(lexicon, _section)
 				lexicon[$ _section] = []
 			continue

@@ -57,6 +57,8 @@ to `GenName.yyp/` unless noted.
   adjectives to it. Adjectives precede the noun.
 - File dialogs use `get_open_filename` / `get_save_filename`; file I/O uses the
   legacy `file_text_*` API. Code writes to the default working/save directory.
+- `file_text_readln` keeps the line terminator, so always strip both `\r` and
+  `\n` before using a line (lexicon files may be LF or CRLF).
 
 ## GML style notes
 - Legacy dialect is mixed with modern function syntax: functions are declared as
