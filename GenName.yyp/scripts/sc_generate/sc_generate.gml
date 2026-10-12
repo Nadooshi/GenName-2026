@@ -34,9 +34,6 @@ function sc_generate() {
 
 	return cap_word
 
-
-
-
 }
 
 /// @desc Return every generator result joined by "\n" (one line each when drawn)
@@ -54,6 +51,7 @@ function sc_generate_all() {
 
 	var _name = sc_generate_name()
 	if (_name != "") array_push(_lines, _name)
+	
 
 	var _text = ""
 	for (var i = 0; i < array_length_1d(_lines); i++) {

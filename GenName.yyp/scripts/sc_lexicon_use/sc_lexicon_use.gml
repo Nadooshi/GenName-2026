@@ -54,8 +54,15 @@ function sc_lexicon_use() {
 	return _phrase
 }
 
-/// @desc Generate a full character name (first + patronymic + surname), gender-matched
+/// @desc Generate a full character name (first + patronymic + surname), gender-matched.
+///      Sometimes returns a foreign name instead (given name + male name, no surname).
 function sc_generate_name() {
+	// with some probability, use a foreign-style name
+	if (irandom(99) < 25) {
+		var _f = sc_generate_foreign_name()
+		if (_f != "") return _f
+	}
+
 	// pick a gender that has all three parts
 	var _genders = []
 	if (sc_lexicon_has("name_m") and sc_lexicon_has("patronymic_m") and sc_lexicon_has("surname_m")) array_push(_genders, "m")
@@ -70,6 +77,35 @@ function sc_generate_name() {
 	var _parts   = [_first, _patro, _surname]
 
 	// join the chosen words, skipping any empty section
+	var _name = ""
+	for (var i = 0; i < array_length_1d(_parts); i++) {
+		if (_parts[i] == "") continue
+		_name += (_name == "") ? _parts[i] : " " + _parts[i]
+	}
+
+	return _name
+}
+
+/// @desc Foreign-style name: given name + male name, no surname, optional belonging particle
+function sc_generate_foreign_name() {
+	// given name: male or female
+	var _genders = []
+	if (sc_lexicon_has("name_m")) array_push(_genders, "m")
+	if (sc_lexicon_has("name_f")) array_push(_genders, "f")
+	if (array_length_1d(_genders) == 0) return ""
+
+	var _sfx = "_" + _genders[irandom_range(0, array_length_1d(_genders) - 1)]
+	var _first = sc_lexicon_pick("name" + _sfx)
+
+	// a male name instead of the patronymic
+	var _second = sc_lexicon_pick("name_m")
+
+	// optional belonging particle before the second name
+	var _particle = ""
+	if (sc_lexicon_has("particle")) and (irandom(99) < 40)
+		_particle = sc_lexicon_pick("particle")
+
+	var _parts = [_first, _particle, _second]
 	var _name = ""
 	for (var i = 0; i < array_length_1d(_parts); i++) {
 		if (_parts[i] == "") continue

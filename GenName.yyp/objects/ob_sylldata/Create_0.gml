@@ -21,8 +21,9 @@ globalvar range_reverse
 globalvar range_triple
 globalvar range_triprev
 
-var;
-randomize()
+
+var; randomize()
+
 sylldata_path = ""
 lexicon_path = ""
 lexicon = {}

@@ -58,7 +58,9 @@ to `GenName.yyp/` unless noted.
   lexicon sections (`grade_m/_f/_n`, `thing_m/_f/_n`, `decoration_m/_f/_n`,
   `attachment`) hold one word per line. Adjectives precede and agree in gender
   with the noun. Character-name sections are `name_m/_f`, `patronymic_m/_f`
-  and `surname_m/_f` (gender-matched, combined by `sc_generate_name`).
+  and `surname_m/_f` (gender-matched, combined by `sc_generate_name`). Foreign
+  names use `fname_m/_f` + `particle` via `sc_generate_foreign_name` (given name
+  + male name, no surname, occasional `particle`).
 - `sc_sylldata_save` still writes only the syllable sections (default
   `syll.txt`); it does not include the lexicon. Keep its output in sync with the
   loader if you change the format.
